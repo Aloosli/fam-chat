@@ -31,3 +31,15 @@ export default {
   },
 };
 </script>
+<style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+input {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+</style>
