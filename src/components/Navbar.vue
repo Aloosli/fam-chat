@@ -1,4 +1,7 @@
 <template>
+  <div class="app-name">
+    Chatterbox
+  </div>
   <nav v-if='user'>
     <div>
       <p>Hey there {{ user.displayName }}</p>
@@ -29,6 +32,7 @@ export default {
 </script>
 
 <style>
+
 nav {
   padding: 20px;
   border-bottom: 1px solid #eee;
@@ -44,5 +48,14 @@ nav p {
 nav p.email {
   font-size: 14px;
   color: #999;
+}
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+.app-name {
+  font-family: 'DynaPuff', cursive;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #5464c1;
+  text-align: center;
 }
 </style>
