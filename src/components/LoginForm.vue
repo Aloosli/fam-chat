@@ -4,12 +4,17 @@
     <input type="password" required placeholder="password" v-model="password" />
     <div class="error">{{ error }}</div>
     <button>Login</button>
+    <!-- Add this button inside the <form> element in the Login component -->
+    <button @click.prevent="handleGoogleSignIn" class="google-sign-in">
+      Sign in with Google
+    </button>
   </form>
 </template>
 
 <script>
 import { ref } from "vue";
 import useLogin from "../composables/useLogin";
+import useGoogleSignIn from "../composables/useGoogleSignIn";
 
 export default {
   setup(props, context) {
@@ -26,8 +31,16 @@ export default {
         context.emit("login");
       }
     };
+    const { error: googleSignInError, googleSignIn } = useGoogleSignIn();
 
-    return { email, password, handleSubmit, error };
+    const handleGoogleSignIn = async () => {
+      await googleSignIn();
+      if (!googleSignInError.value) {
+        context.emit("login");
+      }
+    };
+
+    return { email, password, handleSubmit, error, handleGoogleSignIn  };
   },
 };
 </script>

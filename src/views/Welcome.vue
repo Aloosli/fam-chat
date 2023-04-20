@@ -3,19 +3,20 @@
     <p>Welcome</p>
     <div v-if="showLogin">
       <h2>Login</h2>
-      <LoginForm @login='enterChat'/>
+      <LoginForm @login="enterChat" />
       <p>
         No account yet? <span @click="showLogin = false"> Sign up</span> instead
       </p>
     </div>
     <div v-else>
       <h2>Sign up</h2>
-      <SignupForm @signup='enterChat' />
+      <SignupForm @enterChat="enterChat" />
       <p>
         Already registered?<span @click="showLogin = true"> Login</span> instead
       </p>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -26,16 +27,21 @@ import { useRouter } from "vue-router";
 
 export default {
   components: { SignupForm, LoginForm },
+  methods: {
+    enterChat() {
+      this.$router.push("/chatroom");
+    },
+  },
   setup() {
-    const showLogin = ref(true)
-    const router = useRouter()
+    const showLogin = ref(true);
+    const router = useRouter();
 
     const enterChat = () => {
-      router.push({ name: 'Chatroom' })
-    }
-    return { showLogin, enterChat }
+      router.push({ name: "Chatroom" });
+    };
+    return { showLogin, enterChat };
   },
-}
+};
 </script>
 
 <style>
@@ -64,7 +70,7 @@ export default {
 .welcome span {
   font-weight: bold;
   text-decoration: underline;
-  cursor: pointer!important;
+  cursor: pointer !important;
 }
 .welcome button {
   margin: 20px auto;
